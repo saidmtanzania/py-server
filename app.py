@@ -3,6 +3,28 @@ import pdfplumber
 
 app = Flask(__name__)
 
+todos = []
+
+@app.route("/", methods=["GET"])
+def get_todos():
+    return {"todos": todos}
+
+@app.route("/todo", methods=["POST"])
+def add_todo():
+    todo = request.get_json()
+    todos.append(todo)
+    return {"message": "Todo added successfully"}
+
+@app.route("/<int:index>", methods=["PUT"])
+def update_todo(index):
+    todo = request.get_json()
+    todos[index] = todo
+    return {"message": "Todo updated successfully"}
+
+@app.route("/<int:index>", methods=["DELETE"])
+def delete_todo(index):
+    todos.pop(index)
+    return {"message": "Todo deleted successfully"}
 
 @app.route('/pdf/', methods=['POST'])
 def add_pdf():
