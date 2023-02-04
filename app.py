@@ -1,6 +1,5 @@
-from flask import Flask, request, Response, jsonify
-import os
-import pdfplumber, csv, json
+from flask import Flask, request, Response
+import pdfplumber
 
 app = Flask(__name__)
 
