@@ -6,6 +6,11 @@ data = pd.read_csv('./res/Student.csv')
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def index():
+    return 'System is running'
+
+
 @app.route('/get_message', methods=['POST'])
 def get_message():
     request_data = request.json  # Assuming you are sending JSON data
