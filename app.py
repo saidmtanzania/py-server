@@ -1,8 +1,6 @@
 from flask import Flask, request, jsonify
 import pandas as pd
 
-# Load your data frame from a CSV file
-data = pd.read_csv('./res/Student.csv')
 
 app = Flask(__name__)
 
@@ -44,6 +42,9 @@ def upload_csv():
 
 @app.route('/get_message', methods=['POST'])
 def get_message():
+    # Load your data frame from a CSV file
+    data = pd.read_csv('./res/Student.csv')
+
     request_data = request.json  # Assuming you are sending JSON data
 
     registration_number = request_data.get('registration_number')
